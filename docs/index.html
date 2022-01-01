@@ -1,14 +1,178 @@
 <html>
+
 <head>
-<title>Holiday Card 2021</title>
+    <title>Holiday Card 2021 - Escape Room Techs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Montserrat&display=swap');
+
+        html {
+            font-size: calc(1em + 1vw);
+        }
+        body {
+            background-image: url('tree-background.jpg');
+            min-height: calc(100vh - 16px);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .header {
+            text-shadow: 1px 2px 2px gray;
+            color: darkgoldenrod;
+            font-size: 3em;
+            text-align: center;
+            font-family: Montserrat;
+
+        }
+        
+        button {
+            border: 2px black;
+            border-radius: 5px;
+            padding: 3vh 5vw 3vh 5vw;
+            margin-bottom: 1vh;
+            background-color: white;
+            color: red;
+            font-size: 2em;
+            text-align: center;
+            font-family: Montserrat;
+        }
+
+        .game {
+            display: block;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .gameframe {
+            display: block;
+            position: absolute;
+            background: white;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            visibility: hidden;
+        }
+
+        .xbutton {
+            top: 0px;
+            left: calc(100vw - 1em);
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 2em;
+            color: #888888;
+            text-shadow: black 3px 3px;
+            position: absolute;
+            z-index: 9999;
+        }
+
+        
+        .reconnect {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            top: 0px;
+            left: 0px;
+            background-color: #ffffff;
+            font-size: 60%;
+            text-align: center;
+            padding-left: auto;
+            padding-right: auto;
+        }
+
+    </style>
 </head>
+
 <body>
-  <h1>Holiday Card 2021 by Escape Room Techs</h1>
-  <br/>
-  <h3>Thanks for visiting the site to explore your holiday card, and happy new year!  Puzzles should be live later today, so check back soon!</h3>
-  <br/>
-  <p>If you have any questions, contact us at escape@escaperoomtechs.com or https://m.me/escaperoomtechs </h3>
-  <br/>
-  <p>Until the full experience is ready, feel free to plug in a Micro USB cable and enjoy the holiday light show!</p>
+    
+    <script type="text/javascript" src="reconnecting-websocket.js"></script>
+    <script type="text/javascript" src="connectivity.js"></script>
+<script>
+    var hash=function(b){for(var a=0,c=b.length;c--;)a+=b.charCodeAt(c),a+=a<<10,a^=a>>6;a+=a<<3;a^=a>>11;return((a+(a<<15)&4294967295)>>>0).toString(16)};
+    var answers = ["4033a62b","764d684e","a95496b"];
+
+    var checkanswer = () => {
+        let answer = window.prompt("Please enter your answer.");
+        answer = answer.toLowerCase().split('').reduce((word, char) => {
+            if (char >= 'a' && char <= 'z')
+            {
+                word += char;
+            }
+            return word;
+        }, '');
+
+        console.log(hash(answer));
+        
+        
+        for (let rightAnswer of answers)
+        {
+            if (rightAnswer === hash(answer))
+            {
+                alert("Congratulations, that is the correct answer to one of the puzzles!");
+            }
+        }
+
+    }
+
+    var closegame = () => {
+        ["game1", "game2", "game3"].map(g => {
+            document.getElementById(g).style.visibility = "hidden";
+            document.getElementById(g+"i").contentWindow.postMessage('hide', '*');
+        });
+    }
+
+    var show = (g) => {
+        closegame();
+        document.getElementById(g).style.visibility = "visible";
+        document.getElementById(g+"i").contentWindow.postMessage('show', '*');
+        document.getElementById(g+"i").focus();
+    }
+    </script>
+    <div class="header">
+        Holiday Tree Entertainment Pack
+    </div>
+    
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div style="text-align: center">
+    <button onclick="show('game1')">Begin Game 1</button>
+    <button onclick="show('game2')">Begin Game 2</button>
+    <button onclick="show('game3')">Begin Game 3</button>
+    <button onclick="checkanswer()">Check Answer</button>
+    <button onclick="window.open('hints.html')">Hints</button>
+    <div class="gameframe" id="game3">
+        <a href="#" class="xbutton" onclick="closegame(); return false" class="xbutton">X</a>
+        <iframe class="game" src="tetravex/build/index.html" id="game3i"></iframe>
+    </div>
+    <div class="gameframe" id="game2">
+        <a href="#" class="xbutton" onclick="closegame(); return false" class="xbutton">X</a>
+    <iframe class="game" src="cinco/index.html" id="game2i"></iframe>
+    </div>
+    <div class="gameframe" id="game1">
+        <a href="#" class="xbutton" onclick="closegame(); return false" class="xbutton">X</a>
+    <iframe class="game" src="skifree/index.html" id="game1i"></iframe>
+    </div>
+    </div>
+
+    
+    <div class="reconnect" id="reconnect">
+        <h1>Please connect to the card to continue.</h1>
+        <hr />
+        <h2>We've now preloaded the games for your card into your browser.  To start playing, you'll need to power on your card and then switch your Wi-Fi network.</h2>
+        <h3>To connect to your greeting card:</h3>
+        <ul>
+            <li>Power on the greeting card by connecting a Micro USB cable to any USB power adapter and the card.</li>
+            <li>On this device, keep this web page open and change your Wi-Fi network to "Holiday Card"</li>
+            <li>Return to this page and wait for connection to be established.</li>
+        </ul>
+        <hr />
+        <h5>We recommend playing on a laptop or desktop computer for the best experience.</h5>
+        <h5>Having problems? Message us at https://m.me/escaperoomtechs/ for assistance!</h5>
+    </div>
+
 </body>
+
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Skifree.js</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta http-equiv="cleartype" content="on">
+
+        <meta name="description" content="A JavaScript port of Chris Pirih's classic SkiFree game, by Dan Hough">
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" href="apple-touch-icon.png">
+
+        <!-- Tile icon for Win8 (144x144 + tile color) -->
+        <meta name="msapplication-TileImage" content="apple-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileColor" content="#222222">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/skifree.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <canvas id="skifree-canvas" tabindex="0"></canvas>
+        <script type="text/javascript" src="dist/reconnecting-websocket.js"></script>
+        <script src="dist/connectivity.js"></script>
+        <script src="js/vendor/jquery-1.8.3.min.js"></script>
+        <script src="js/vendor/sugar-1.3.7.min.js"></script>
+        <script src="dist/skifree.js"></script>
+
+        
+    <div class="reconnect" id="reconnect">
+        <h1>Please connect to the card to continue.</h1>
+        <hr />
+        <h3>To connect to your greeting card:</h3>
+        <ul>
+            <li>Power on the greeting card by connecting a Micro USB cable to any USB power adapter and the card.</li>
+            <li>On this device, keep this web page open and change your Wi-Fi network to "Holiday Card"</li>
+            <li>Return to this page and wait for connection to be established.</li>
+        </ul>
+        <hr />
+        <h5>Having problems? Message us at https://m.me/escaperoomtechs/ for assistance!</h5>
+    </div>
+    
+    </body>
+</html>

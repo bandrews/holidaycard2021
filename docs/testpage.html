@@ -1,0 +1,89 @@
+<html>
+<head>
+	<script src="reconnecting-websocket.js"></script>
+	<script>
+		var card = new ReconnectingWebSocket('ws://10.0.0.1:81/', ['arduino']);
+
+		card.onopen = function () {
+			card.send('!connect');
+			document.getElementById("isConnected").innerHTML = "Yes";
+		};
+
+		card.onerror = function (error) {
+			console.error('WebSocket Error ', error);
+			document.getElementById("isConnected").innerHTML = "No (Error)";
+		};
+
+		card.onclose = function (close) {
+			document.getElementById("isConnected").innerHTML = "No";
+		}
+
+		card.onmessage = function (e) {
+			try {
+				let message = JSON.parse(e.data);
+				document.getElementById("status").innerHTML = Object.keys(message).map(key => "<tr><td>"+key+"</td><td>"+JSON.stringify(message[key])+"</td></tr>").join('');
+			}
+			catch (ex)
+			{
+				console.log("Recevied unparseable message:  "+ex);
+			}
+		};
+
+		function sendRGB() {
+			msg = {command: "led"};
+			msg.r = parseInt(document.getElementById('r').value);
+			msg.g = parseInt(document.getElementById('g').value);
+			msg.b = parseInt(document.getElementById('b').value);
+
+			console.log(JSON.stringify(msg));
+			msg.min = parseInt(document.getElementById('min').value);
+			msg.max = parseInt(document.getElementById('max').value);
+			card.send(JSON.stringify(msg));
+		}
+
+		
+		function setSendFreq() {
+			msg = {command: "setSendInterval"};
+			msg.sendInterval = parseInt(document.getElementById('interval').value);
+			card.send(JSON.stringify(msg));
+		}
+
+		function join() {
+			msg = {command: "joinwifi",
+			ssid: document.getElementById('ssid').value,
+			key: document.getElementById('key').value};
+			alert(JSON.stringify(msg));
+			card.send(JSON.stringify(msg));
+		}
+
+		
+
+
+	</script>
+
+</head>
+
+<body>
+	<h1 id="isConnected">Unknown</h1>
+	LED Control:<br />
+	<br />
+	R: <input id="r" type="range" min="0" max="255" step="1" onchange="sendRGB();" /><br />
+	G: <input id="g" type="range" min="0" max="255" step="1" onchange="sendRGB();" /><br />
+	B: <input id="b" type="range" min="0" max="255" step="1" onchange="sendRGB();" /><br />
+	min: <input id="min" type="range" min="0" max="9" step="1" value="0" onchange="sendRGB();" /><br />
+	max: <input id="max" type="range" min="0" max="9" step="1" value="9"onchange="sendRGB();" /><br />
+<hr/>
+send interval <input id="interval" type="range" min="100" max="10000" step="100" value="1000" onchange="setSendFreq();" /><br />
+<hr/>
+Join Wifi
+ssid: <input id="ssid" type="text"/><br/>
+pass: <input id="key" type="text"/><br/>
+<button onclick="join();">Join</button>
+<hr/>
+
+	<h1>Status</h1>
+	<table id="status">
+	</table>
+</body>
+
+</html>

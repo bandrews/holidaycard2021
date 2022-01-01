@@ -1,0 +1,302 @@
+<html>
+
+<head>
+    <title>Holiday Card 2021 - Escape Room Techs</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Montserrat&display=swap');
+
+        html {
+            font-size: calc(1em + 1vw);
+        }
+
+        body {
+            background-image: url('../tree-background.jpg');
+            min-height: calc(100vh - 16px);
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Montserrat;
+        }
+
+        .header {
+            text-shadow: 1px 2px 2px gray;
+            color: darkgoldenrod;
+            font-size: 3em;
+            text-align: center;
+            font-family: Montserrat;
+
+        }
+
+        button {
+            border: 2px black;
+            border-radius: 5px;
+            padding: 3vh 5vw 3vh 5vw;
+            background-color: white;
+            color: red;
+            font-size: 2em;
+            text-align: center;
+            font-family: Montserrat;
+        }
+
+        .letterbox {
+            min-width: 2em;
+            width: 2em;
+            min-height: 2em;
+            font-size: 2em;
+            text-align: center;
+            text-transform: capitalize;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+        }
+
+        .boxes {
+            text-align: center;
+        }
+
+        #history {
+            text-align: center;
+            width: 60vw;
+            background-color: #ffffffaa;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reconnect {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            top: 0px;
+            left: 0px;
+            background-color: #ffffff;
+            font-size: 60%;
+            text-align: center;
+            padding-left: auto;
+            padding-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        Challenge
+    </div>
+    <h5 style="text-align: center">Sometimes, when Santa is a bit forgetful while checking his list twice, his top elf
+        and operational <i>Mastermind</i> can remind him of the
+        details.</h5>
+    <h4 id="results"></h4>
+    <div class="boxes">
+        <form name="g">
+            <input type="text" class="letterbox" maxlength="1" name="i1" oninput="autotab(this, 'i2')" />
+            <input type="text" class="letterbox" maxlength="1" name="i2" oninput="autotab(this, 'i3')" />
+            <input type="text" class="letterbox" maxlength="1" name="i3" oninput="autotab(this, 'i4')" />
+            <input type="text" class="letterbox" maxlength="1" name="i4" oninput="autotab(this, 'i5')" />
+            <input type="text" class="letterbox" maxlength="1" name="i5" oninput="autotab(this, 'i1', true)" />
+        </form>
+    </div>
+    <div style="text-align: center">
+        <button onclick="showSolve()">Solve</button>
+
+        <div id="history">
+        </div>
+    </div>
+
+    <script type="text/javascript" src="hash.js"></script>
+    <script type="text/javascript" src="../reconnecting-websocket.js"></script>
+    <script type="text/javascript" src="../connectivity.js"></script>
+    <script>
+        let answers = ['66dd886b', 'f03cfaa3', '18e33213', '79d644c3', 'f71432fe'];
+
+        let check = (o, w) => {
+            if (o == 1) {
+                for (let i = 0; i < answers.length; i++) {
+                    if (answers[i] == hash(w)) {
+                        answers[i] = w;
+                    }
+                }
+            }
+            else {
+                Object.keys(o).map(a => check(o[a], w + a));
+            }
+        }
+        check(db, "");
+        var solvecounter = 0;
+        var solveenabled = false;
+
+
+        document.addEventListener("card", function (e) {
+            let status = e.detail;
+
+            if (solveenabled) {
+                if (status.light.lux > 100) {
+                    solvecounter++;
+                }
+                else {
+                    solvecounter = 0;
+                }
+
+                if (solvecounter > 5) {
+                    solution.style.visibility = "visible";
+                }
+            }
+        });
+
+        var controls = ["i1", "i2", "i3", "i4", "i5"]
+
+        function disableAll() {
+            controls.map(c => document.g[c].setAttribute("disabled", true));
+        };
+
+        function disableAllExcept(name) {
+            disableAll();
+            document.g[name].removeAttribute("disabled");
+            document.g[name].focus();
+        }
+
+        function clear() {
+            controls.map(c => document.g[c].value = "");
+            disableAllExcept("i1");
+        }
+
+        function showSolve() {
+            document.getElementById("finalSolve").style.visibility = "visible";
+            solveenabled = true;
+            solvecounter = 0;
+            setSendFreq(250);
+        }
+
+        function hideSolve() {
+            document.getElementById("finalSolve").style.visibility = "hidden";
+            solveenabled = false;
+            setSendFreq(1000000);
+        }
+
+        var currentPhase = 0;
+
+        function checkAnswer(then) {
+            let answer = controls.map(c => document.g[c].value);
+            let stringAnswer = answer.join('');
+            let pathway = db;
+
+            for (let i = 0; i < answer.length; i++) {
+                if (pathway != undefined) {
+                    pathway = pathway[answer[i]];
+                }
+            }
+
+            let green = 0;
+            let blue = 0;
+
+            if (pathway === undefined) {
+                sendRGB(255, 0, 0, 0, 10);
+            }
+            else {
+
+                let history = document.getElementById("history");
+                history.innerHTML = answer.join('') + "<br/>" + history.innerHTML;
+
+                let correctAnswer = answers[currentPhase]
+                let editedAnswer = correctAnswer.split('');
+
+
+
+                for (let i = 0; i < answer.length; i++) {
+                    if (answer[i] == editedAnswer[i]) {
+                        green++;
+                        editedAnswer[i] = '.';
+                        answer[i] = '!';
+                    }
+                }
+                for (let i = 0; i < answer.length; i++) {
+                    for (let j = 0; j < editedAnswer.length; j++) {
+                        if (answer[i] == editedAnswer[j]) {
+                            //alert(answer+", "+editedAnswer+", "+i+", "+j);
+                            blue++;
+                            editedAnswer[j] = ',';
+                            answer[i] = '@';
+                            //alert(answer+", "+editedAnswer+", "+i+", "+j);
+                        }
+                    }
+                }
+
+                var lights = [];
+                for (let i = 0; i < green; i++) {
+                    lights.push([0, 255, 0]);
+                }
+                for (let i = 0; i < blue; i++) {
+                    lights.push([0, 0, 255]);
+                }
+                while (lights.length < 10) {
+                    lights.push([0, 0, 0]);
+                }
+
+
+                lights = lights
+                    .map((value) => ({ value, sort: Math.random() }))
+                    .sort((a, b) => a.sort - b.sort)
+                    .map(({ value }) => value)
+
+                lights.map((color, index) => { sendRGB(color[0], color[1], color[2], index, index); });
+
+                //alert("CODE:  " + green + " , " + blue);
+            }
+
+            if (green === 5) {
+                // alert("ANSWER #" + currentPhase);
+                document.getElementById("results").innerHTML += " " + stringAnswer;
+                document.getElementById("history").innerHTML = "";
+                currentPhase++;
+            }
+            then();
+        }
+
+        function autotab(current, to, done) {
+
+            current.value = current.value.toLowerCase().split('').map(l => (l >= 'a' && l <= 'z') ? l : '')
+
+            if (current.getAttribute && current.value.length == current.getAttribute("maxlength")) {
+                disableAll();
+
+                if (done) {
+                    checkAnswer(() => {
+                        clear();
+                        disableAllExcept(to);
+                    });
+                }
+
+                else {
+                    disableAllExcept(to);
+                }
+
+            }
+        }
+
+        clear();
+    </script>
+
+    <div class="reconnect" id="reconnect">
+        <h1>Please connect to the card to continue.</h1>
+        <hr />
+        <h3>To connect to your greeting card:</h3>
+        <ul>
+            <li>Power on the greeting card by connecting a Micro USB cable to any USB power adapter and the card.</li>
+            <li>On this device, keep this web page open and change your Wi-Fi network to "Holiday Card"</li>
+            <li>Return to this page and wait for connection to be established.</li>
+        </ul>
+        <hr />
+        <h5>Having problems? Message us at https://m.me/escaperoomtechs/ for assistance!</h5>
+    </div>
+
+
+    <div class="reconnect" id="finalSolve" style="visibility: hidden">
+        <h1>Solution</h1>
+        <hr />
+        <h3>If you've decoded the message and are ready to solve the puzzle, perform the solution step now.</h3>
+        <h1 id="solution" style="visibility: hidden">&#72;&#79;&#76;&#76;&#89;</h1>
+        <h3><button onclick="hideSolve()">Close</button></h3>
+    </div>
+
+
+</body>
+
+</html>
