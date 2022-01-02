@@ -116,7 +116,7 @@
     }
 
     var closegame = () => {
-        ["game1", "game2", "game3"].map(g => {
+        ["game1", "game2", "game3", "hint"].map(g => {
             document.getElementById(g).style.visibility = "hidden";
             document.getElementById(g+"i").contentWindow.postMessage('hide', '*');
         });
@@ -135,6 +135,7 @@
     
     <br/>
     <br/>
+    <h4>Welcome!  We've prepared three independent games you can play with your holiday tree card.  Each contains a puzzle to solve;  when you think you've solved one of the puzzles, you can use the Check Answer button on this page to verify your solution.  There is no "meta" puzzle that uses all of the answers together, so solve individually at your leisure!</h4>
     <br/>
     <br/>
     <div style="text-align: center">
@@ -142,7 +143,7 @@
     <button onclick="show('game2')">Begin Game 2</button>
     <button onclick="show('game3')">Begin Game 3</button>
     <button onclick="checkanswer()">Check Answer</button>
-    <button onclick="window.open('hints.html')">Hints</button>
+    <button onclick="show('hint')">Hints</button>
     <div class="gameframe" id="game3">
         <a href="#" class="xbutton" onclick="closegame(); return false" class="xbutton">X</a>
         <iframe class="game" src="tetravex/build/index.html" id="game3i"></iframe>
@@ -154,6 +155,11 @@
     <div class="gameframe" id="game1">
         <a href="#" class="xbutton" onclick="closegame(); return false" class="xbutton">X</a>
     <iframe class="game" src="skifree/index.html" id="game1i"></iframe>
+    </div>
+    
+    <div class="gameframe" id="hint">
+        <a href="#" class="xbutton" onclick="closegame(); return false" class="xbutton">X</a>
+    <iframe class="game" src="hints.html" id="hinti"></iframe>
     </div>
     </div>
 

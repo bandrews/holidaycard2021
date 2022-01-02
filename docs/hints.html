@@ -6,13 +6,15 @@
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Montserrat&display=swap');
 
         html {
-            font-size: calc(1em + 1vw);
+            font-size: calc(0.5em + 0.5vw);
         }
         body {
             background-image: url('tree-background.jpg');
             min-height: calc(100vh - 16px);
             background-size: cover;
             background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-bottom: 20em;
         }
 
         .header {
@@ -72,15 +74,526 @@
     <div class="header">
         Holiday Tree Entertainment Pack
     </div>
-    
+
     <br/>
-    <br/>
-    <br/>
-    <br/>
-    <h1>Hints Coming Soon</h1>
-    <ul>
-        <li>        </li>
-    </ul>
+<style>
+    .wrap-collabsible {
+        margin-bottom: 1.2rem 0;
+      }
+      
+      input[type='checkbox'] {
+        display: none;
+      }
+      
+      .lbl-toggle {
+        display: block;
+      
+        font-weight: bold;
+        
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        text-align: left;
+      
+        padding: 1rem;
+        font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #ffffff88;
+      
+        cursor: pointer;
+      
+        border-radius: 7px;
+        transition: all 0.25s ease-out;
+      }
+      
+      .lbl-toggle:hover {
+        color: #7C5A0B;
+      }
+      
+      .lbl-toggle::before {
+        content: ' ';
+        display: inline-block;
+      
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 5px solid currentColor;
+        vertical-align: middle;
+        margin-right: .7rem;
+        transform: translateY(-2px);
+      
+        transition: transform .2s ease-out;
+      }
+      
+      .toggle:checked + .lbl-toggle::before {
+        transform: rotate(90deg) translateX(-3px);
+      }
+      
+      .collapsible-content {
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height .25s ease-in-out;
+      }
+      
+      .toggle:checked + .lbl-toggle + .collapsible-content {
+        max-height: 100vh;
+      }
+      
+      .toggle:checked + .lbl-toggle {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      
+      .collapsible-content .content-inner {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: rgba(255, 0, 0, .2);
+        border-bottom: 1px solid rgba(250, 224, 66, .45);
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+        padding: .5rem 1rem;
+      }
+      </style>
+
+      <h1>Game 1</h1>
+      <div class="wrap-collabsible">
+        <input id="game1-1" class="toggle" type="checkbox">
+        <label for="game1-1" class="lbl-toggle">What game am I playing, even?  What is this based on?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              This game is based on an old Windows Entertainment Pack game called SkiFree.  It was originally designed by Chris Pirih.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game1-2" class="toggle" type="checkbox">
+        <label for="game1-2" class="lbl-toggle">How do I control the game?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Try picking up the tree card and tilting it.  Start by holding the card flat/level, parallel to the table.  Tilt forward to move, tilt back to stop, tilt side by side to turn!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game1-3" class="toggle" type="checkbox">
+        <label for="game1-3" class="lbl-toggle">So is this just a skiing adventure, or is there a puzzle to solve?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+             There is indeed a puzzle to solve.  You're looking to decode a single word.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game1-4" class="toggle" type="checkbox">
+        <label for="game1-4" class="lbl-toggle">I'm having fun skiing, but I don't see what I should be looking for.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Look for something that doesn't change between runs.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game1-" class="toggle" type="checkbox">
+        <label for="game1-" class="lbl-toggle">How do I know when I'm finished?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              A kind sasquatch-monster thing will make it abundantly clear that all the data that is collectible has been collected.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game1-5" class="toggle" type="checkbox">
+        <label for="game1-5" class="lbl-toggle">OK, I'm stumped.  What part should I be paying attention to?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              The rainbow ski jumps are the primary data.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game1-6" class="toggle" type="checkbox">
+        <label for="game1-6" class="lbl-toggle">Can you give me a gentle nudge on decoding?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Don't bite off more than you can chew - just take the problem one bit at a time.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game1-7" class="toggle" type="checkbox">
+        <label for="game1-7" class="lbl-toggle">Eh?  How about a huge nudge instead?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              The encoding scheme is five bit binary, and you are looking for a five letter word.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <h1>Game 2</h1>
+      <div class="wrap-collabsible">
+        <input id="game2-1" class="toggle" type="checkbox">
+        <label for="game2-1" class="lbl-toggle">What game am I playing, anyway?  What is this based on?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                Are you sure you want to know?  The rules are very similar and it'll be a pretty substantial spoiler if you go read about it.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-2" class="toggle" type="checkbox">
+        <label for="game2-2" class="lbl-toggle">I've read the previous question's answer and want to know more.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                This game is based on Cinco, from the Windows CE Handheld Entertainment Pack 2.0.  It was a Palm-Sized PC exclusive.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-3" class="toggle" type="checkbox">
+        <label for="game2-3" class="lbl-toggle">I feel like the flavortext is hinting at something, but I don't get the reference.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              You might want to brush up on the rules of the classic game Mastermind before proceeding.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-4" class="toggle" type="checkbox">
+        <label for="game2-4" class="lbl-toggle">I'm trying to type things in and nothing's happening.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Make sure you click the text box to set focus to it before starting to type letters.  If you make a mistake, just keep typing until the form resets.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-5" class="toggle" type="checkbox">
+        <label for="game2-5" class="lbl-toggle">I'm successfully typing things in, but everything is just lighting up red.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Garbage in, garbage out.  Maybe try being a bit more planful about what you type?
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-6" class="toggle" type="checkbox">
+        <label for="game2-6" class="lbl-toggle">Are there rules about what I can type?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Yes.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-7" class="toggle" type="checkbox">
+        <label for="game2-7" class="lbl-toggle">Can I have a big nudge about what those rules are?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Only valid English words can be used as guesses.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-8" class="toggle" type="checkbox">
+        <label for="game2-8" class="lbl-toggle">So how do I interpret the results?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Count up the ornaments that appear on your tree.  The order doesn't matter.  If no ornaments appear, try different input.  If the tree lights up red, try different input, and also review the previous question's answer.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="wrap-collabsible">
+        <input id="game2-9" class="toggle" type="checkbox">
+        <label for="game2-9" class="lbl-toggle">I'm kinda stumped.  Can you just spoil me on the rules and how to interpret the results?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              You must guess valid five-letter English words, and the goal is to determine the secret word that is part of the answer phrase.  When you make a guess, one of four things will appear on the tree:
+              <ul>
+                  <li>If you guess a word that isn't in the dictionary, the tree will be all red.</li>
+                  <li>If you guess a word that is valid, but shares no letters with the answer word, the tree will be fully dark.</li>
+                  <li>For each letter that is in the answer word but in the wrong position, a blue ornament will appear.</li>
+                  <li>For each letter that is in the answer word and in the correct position, a green ornament will appear.</li>
+              </ul>
+              Order of ornaments on the tree does not matter.
+            </p>
+          </div>
+        </div>
+      </div><div class="wrap-collabsible">
+        <input id="game2-10" class="toggle" type="checkbox">
+        <label for="game2-10" class="lbl-toggle">Yay!  I got a single word.  Now what?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              There are more words to discover!  There are five total.
+            </p>
+          </div>
+        </div>
+      </div><div class="wrap-collabsible">
+        <input id="game2-11" class="toggle" type="checkbox">
+        <label for="game2-11" class="lbl-toggle">OK, I feel like I'm finished with this activity, but how do I solve?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Read the answer phrase you extracted.  Perhaps it's a clue telling you to do something, maybe in the real world?
+
+              Make sure to click the Solve button before attempting anything you might want to try.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game2-12" class="toggle" type="checkbox">
+        <label for="game2-12" class="lbl-toggle">I'm stumped on what to do with the answer phrase.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              With a bright flashlight, illuminate the star of the tree at close range, and hold the flashlight there for a couple of seconds.  The light sensor is located just under and to the left of the star's LED.
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <hr/>
+    <h1>Game 3</h1>
+    <div class="wrap-collabsible">
+        <input id="game3-1" class="toggle" type="checkbox" checked>
+        <label for="game3-1" class="lbl-toggle">Some of the tiles aren't rendering correctly and just say "Puzzle Piece".  What's up with that?  [BUG - FREE HINT]</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Honestly, I'm not sure, and I'm working to fix the bug.  If this happens to you, feel free to continue trying to solve the puzzle - all of the puzzle pieces should look exactly the same, and there should be no difference between them in how they appear onscreen, so treat 'puzzle piece' pieces the same as ones with the X artwork.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="wrap-collabsible">
+        <input id="game3-2" class="toggle" type="checkbox">
+        <label for="game3-2" class="lbl-toggle">I'm on a phone or tablet and the pieces won't drag.  [BUG - FREE HINT]</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                Sorry, still working to get drag and drop fine-tuned on iOS/Android.  You're best served playing this game on a laptop or desktop right now.
+            </p>
+          </div>
+        </div>
+      </div>
+    <div class="wrap-collabsible">
+        <input id="game3-3" class="toggle" type="checkbox">
+        <label for="game3-3" class="lbl-toggle">What game is this based on?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              This game is based on TetraVex, from the Microsoft Entertainment Pack 3.  It was written by Scott Ferguson.  The rules are very similar for the construction phase.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-collabsible">
+        <input id="game3-4" class="toggle" type="checkbox">
+        <label for="game3-4" class="lbl-toggle">All of these pieces look the same.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Yup.  There must be some way to tell them apart.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="wrap-collabsible">
+        <input id="game3-5" class="toggle" type="checkbox">
+        <label for="game3-5" class="lbl-toggle">Sometimes, pieces won't let me drop them in a location on the board.  Is that a glitch?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              No, that's intentional.  There must be some sort of constraint.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap-collabsible">
+        <input id="game3-6" class="toggle" type="checkbox">
+        <label for="game3-6" class="lbl-toggle">How do I tell these pieces apart?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Watch the tree while a piece is picked up and being dragged.  It should light up!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="wrap-collabsible">
+        <input id="game3-7" class="toggle" type="checkbox">
+        <label for="game3-7" class="lbl-toggle">What are the rules for piece placement?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>Read the four colors for the piece from the tree when it lights up (the star side of the tree is the top edge).</p>
+              <p>Edges of pieces must match before they can be placed next to each other (e.g. only a piece with orange on the top can be placed below a piece with orange on the bottom.)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="wrap-collabsible">
+        <input id="game3-8" class="toggle" type="checkbox">
+        <label for="game3-8" class="lbl-toggle">What are the ten valid colors?  I'm having trouble telling them apart.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              The colors are, in alphabetical order:
+
+              <ul>
+                  <li>Black (renders as a light turned off on the card)</li>
+                  <li>Blue</li>
+                  <li>Brown (renders as a light muddy reddish-orange on the card)</li>
+                  <li>Gray (renders as a light white on the card)</li>
+                  <li>Green</li>
+                  <li>Orange</li>
+                  <li>Purple</li>
+                  <li>Red</li>
+                  <li>White (renders as a very bright white on the card)</li>
+                  <li>Yellow</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap-collabsible">
+        <input id="game3-9" class="toggle" type="checkbox" checked>
+        <label for="game3-9" class="lbl-toggle">OK, I understand what's going on, but this is a lot of work.  Will you be offended if I skip this puzzle?  [FREE HINT]</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                No worries, no offense taken.  This puzzle is definitely the most time consuming of the three to solve.  You're not missing some big showpiece ending if you don't solve all three.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="wrap-collabsible">
+        <input id="game3-10" class="toggle" type="checkbox">
+        <label for="game3-10" class="lbl-toggle">OK, I'm well on my way to assembling the grid, but I don't know what to do next.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                There's a guide in the bottom right of the screen that is intended to give you some helpful clues.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap-collabsible">
+        <input id="game3-11" class="toggle" type="checkbox">
+        <label for="game3-11" class="lbl-toggle">Sorry, I don't speak game developer hieroglyphics.  Help me interpret the guide in the bottom right!</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                This diagram is trying to tell you to read the edges of the grid, starting on the top left and going clockwise around the entire grid.  Read the data in pairs of two.  There's also a unique symbol that is a strong clue to how to interpret the data.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="wrap-collabsible">
+        <input id="game3-12" class="toggle" type="checkbox">
+        <label for="game3-12" class="lbl-toggle">OK, I'm trying to interpret the data, but I don't know how to translate from what I see to a word.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                There are two steps.  You need to turn the colors into numbers (Step 1), and you need to turn the numbers into letters (Step 2).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="wrap-collabsible">
+        <input id="game3-13" class="toggle" type="checkbox">
+        <label for="game3-13" class="lbl-toggle">I need help with Step 1 from the previous answer.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                Recognize that zig-zag symbol in the guide, maybe from physics class?
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="wrap-collabsible">
+        <input id="game3-14" class="toggle" type="checkbox">
+        <label for="game3-14" class="lbl-toggle">I need more help with Step 1 from the previous answer.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                The zig-zag symbol is a resistor.  Resistors have color bands, and those color bands indicate a numeric digit.  You can use this scheme to translate the colors to digits.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap-collabsible">
+        <input id="game3-15" class="toggle" type="checkbox">
+        <label for="game3-15" class="lbl-toggle">I need help with Step 2 from the previous answer.</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+                Interpret the paired digits as letters, with 01 being A and 26 being Z.  Make sure to interpret each digit as if you are reading it as you travel around the grid (e.g. digits are read from right to left on the bottom edge.)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="wrap-collabsible">
+        <input id="game3-16" class="toggle" type="checkbox">
+        <label for="game3-16" class="lbl-toggle">This puzzle felt like it was lacking a little panache at the end.  Why?</label>
+        <div class="collapsible-content">
+          <div class="content-inner">
+            <p>
+              Your tree includes a magnet sensor in the base of the tree trunk, but it only works on some of the cards, so we ended up not using it in the puzzles.  Sadness - the original clue about bringing the "north pole" closer to the tree was going to be a lot of fun!
+            </p>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>
