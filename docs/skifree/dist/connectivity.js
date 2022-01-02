@@ -24,7 +24,6 @@ card.onmessage = function (e) {
             detail: message
         });
 
-        console.log(message);
         document.dispatchEvent(dataReceived);
         //document.getElementById("status").innerHTML = Object.keys(message).map(key => "<tr><td>" + key + "</td><td>" + JSON.stringify(message[key]) + "</td></tr>").join('');
     }
