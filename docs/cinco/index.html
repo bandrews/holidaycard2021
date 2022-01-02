@@ -272,6 +272,20 @@
         }
 
         clear();
+
+        window.addEventListener('message', function (e) {
+		// Get the sent data
+		const data = e.data;
+	
+		if (data === "show")
+		{
+			setSendFreq(1000000);
+		}
+		else if (data === "hide")
+		{
+		}
+
+	});
     </script>
 
     <div class="reconnect" id="reconnect">
