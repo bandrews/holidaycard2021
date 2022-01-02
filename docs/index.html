@@ -128,6 +128,12 @@
         document.getElementById(g+"i").contentWindow.postMessage('show', '*');
         document.getElementById(g+"i").focus();
     }
+    
+    if (window.location.href.startsWith("https"))
+    {
+        alert("To communicate with the holiday card, this page must be loaded over insecure HTTP.  If you have a browser extension or setting that enforces HTTPS, please disable it before playing.");
+        window.location.href="http://holidaycard2021.escaperoomtechs.com/";
+    }
     </script>
     <div class="header">
         Holiday Tree Entertainment Pack
