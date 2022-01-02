@@ -2162,6 +2162,7 @@ function startNeverEndingGame(images) {
 		isMonsterSpawned = false;
 		livesLeft = 5;
 		highScore = localStorage.getItem('highScore');
+    setSendFreq(250);
 		game.reset();
 		game.addStaticObject(startSign);
 	}
@@ -2285,6 +2286,7 @@ function startNeverEndingGame(images) {
 			}
 
 			if (distanceTravelledInMetres > nextSpawnThreshold) {
+        setSendFreq(250);
 				lastLedSentAt = distanceTravelledInMetres;
 				sendRGB(0,128,0,0,10);
 				if (spawns[nextSpawnThreshold]) {
@@ -2374,6 +2376,7 @@ function startNeverEndingGame(images) {
 	//Mousetrap.bind('m', spawnMonster);
 	//Mousetrap.bind('b', spawnBoarder);
 	Mousetrap.bind('space', resetGame);
+  Mousetrap.bind('f', () => {setSendFreq(250);});
 
 	/*var hammertime = Hammer(mainCanvas).on('press', function (e) {
 		e.preventDefault();
